@@ -1,0 +1,30 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Test</title>
+    <!-- <script defer type="module" src="/js/test.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+</head>
+
+<body>
+    <button class="test">Test Button</button>
+</body>
+
+</html>
+<script type="module">
+    console.log(12345)
+    const testbutton = document.querySelector('.test')
+        const socket = io();
+
+        testbutton.addEventListener('click', () => {
+            console.log('test');
+            socket.emit('test');
+        });
+        
+
+</script>
