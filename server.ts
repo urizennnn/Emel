@@ -7,6 +7,7 @@ import path from 'path';
 import { createClient} from '@deepgram/sdk';
 import dotenv from 'dotenv';
 import { setupDeepgram } from './config/deepgram.config';
+import { connect } from './config/IO.config';
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ export const io = new Server(server, {
     },
 });
 
-
+connect(io)
 
 
 app.use(express.static(path.join(__dirname, '../public')));
