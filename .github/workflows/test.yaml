@@ -26,7 +26,7 @@ jobs:
       - name: goodbye
         run: echo "goodbye"
         shell: bash
-         with:
+        with:
           node-version: '16'
       - name: Install
         run: npm i
