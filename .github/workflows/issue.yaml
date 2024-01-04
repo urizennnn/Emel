@@ -1,0 +1,34 @@
+name: Create a comment on a new issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment-with-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Create comment with API"
+        run: |
+          gh api -X POST \
+            https://api.github.com/repos/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}/issues/${{ env.ISSUE_NUMBER }}/comments \
+            -f body='
+            Comment from API call
+            '
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORGANIZATION: ${{ github.event.organization.login }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
+          reactions: '+1'
