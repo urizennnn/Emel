@@ -11,14 +11,18 @@ jobs:
       - name: "create comment with API"
         run: |
           gh api -X POST \
-            http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+            https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -f body='
             Comment from API call
             '
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
-          ORGANIZATION: ${{github.event.organisation.login}}
-          REPOSITORY: ${{github.event.repository.name}}
-          ISSUE_NUMBER: ${{github.event.issue.number}}
-       
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORGANIZATION: ${{ github.event.organization.login }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
      
+      - name: Debug Info
+        run: |
+          echo "Organization: ${{ github.event.organization.login }}"
+          echo "Repository: ${{ github.event.repository.name }}"
+          echo "Issue Number: ${{ github.event.issue.number }}"
