@@ -8,6 +8,7 @@ on:
     branches:
       - master
   workflow_dispatch:
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,17 +17,16 @@ jobs:
       - name: hello
         run: echo "testing working"
         shell: bash
-        with:
-          node-version: '16'
+        
       - name: Install
         run: npm i
+
   goodbye:
     runs-on: ubuntu-latest
     steps:
       - name: goodbye
         run: echo "goodbye"
         shell: bash
-        with:
-          node-version: '16'
+     
       - name: Install
         run: npm i
